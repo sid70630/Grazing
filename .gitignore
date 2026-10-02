@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# GRAZING-generated files
+fort.*
+*.dat
+*.csv
+*.png
+run_stdout.txt
+run_stderr.txt
+final_generic_outputs/
