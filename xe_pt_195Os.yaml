@@ -1,0 +1,84 @@
+case_name: "xe_pt_195Os"
+
+# Directory where the GRAZING executable and mass tables are located
+base_dir: "~/grazing"
+
+# The executable may also be named grazing_9
+grazing_executable: "grazing_9_64bit"
+random_seed: 12345
+
+reaction:
+  projectile:
+    symbol: "Xe"
+    Z: 54
+    A: 136
+
+  target:
+    symbol: "Pt"
+    Z: 78
+    A: 198
+
+  beam_energy_mevu: 9.4
+
+  # Center-of-mass energy used for the evaporation run
+  ecm_mev: 757.853892215569
+
+interest:
+  # Residue of interest
+  symbol: "Os"
+  Z: 76
+
+  isotopes: [195]
+
+mode:
+  # Recoil reconstruction mode:
+  #   kernel_header    -> use the block-header angle
+  #   kernel_partition -> use the lab angle from the kernel
+  recoil_reconstruction: "kernel_header"
+
+  # Run a fresh evaporation calculation
+  run_evaporation: true
+  evap_kind: "tlf"
+
+fort:
+  fort15: "fort.15"
+  edist_key: "edist"
+  scatlab_key: "scatlab"
+  dsiglab_key: "dsiglab"
+
+  # Weight used for recoil reconstruction from the filtered kernel
+  # Options:
+  # weight_hdr_edist
+  # weight_dsiglab
+  # weight_combined
+  kernel_weight: "weight_hdr_edist"
+
+  # Two-body recoil branch:
+  #   larger  -> larger recoil-angle solution
+  #   smaller -> smaller recoil-angle solution
+  recoil_branch: "larger"
+
+  cell_samples: 40
+
+  # If true, sample uniformly inside the cell; otherwise use Gaussian sampling
+  cell_sample_uniform: true
+
+paths:
+  # Folder containing the fort.* files for this case
+  case_folder: "~/grazing/xe_pt_195Os"
+
+  auto_folder: "~/grazing/auto_198Pt"
+
+  output_folder: "~/grazing/final_generic_outputs/xe_pt_195Os"
+
+plot:
+  # Isotopes to highlight in the Z-N map
+  znmap_highlight: ["195Os"]
+  recoil_angle_range: [50, 75]
+  recoil_energy_range: [0.0, 2.2]
+
+  # Smearing for the recoil plots.
+  smear_display: true
+  smear_angle_sigma_deg: 0.25
+  smear_energy_sigma_mevu: 0.020
+  smear_mc_per_row: 8
